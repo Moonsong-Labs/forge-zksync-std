@@ -9,3 +9,20 @@ Forge ZKsync Standard Library is a collection of helpful contracts and libraries
 ```bash
 forge install Moonsong-Labs/forge-zksync-std
 ```
+
+## Usage
+
+```solidity
+import {Test, console2 as console} from "forge-std/Test.sol";
+import {TestExt} from "forge-zksync-std/TestExt.sol";
+
+contract FooTest is Test, TestExt {
+    function testZkTraceOutputDuringCreate() public {
+        vm.startPrank(address(65536));  // normal foundry cheatcodes
+        new Contract1();
+
+        vmExt.zkVmSkip();               // additional foundry-zksync cheatcodes
+        new Contract2();
+    }
+}
+```
