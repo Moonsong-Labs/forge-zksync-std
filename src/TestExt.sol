@@ -19,6 +19,9 @@ interface VmExt {
     /// All `CREATE`s executed within this skip, will automatically have `CALL`s to their target addresses
     /// executed in the EVM, and need not be marked with this cheatcode at every usage location.
     function zkVmSkip() external pure;
+
+    /// Use a paymaster for the next ZK-VM call.
+    function zkUsePaymaster(address paymaster, bytes calldata input) external;
 }
 
 abstract contract TestExt {
